@@ -25,6 +25,8 @@ window.ETS_EQUIPA = [
  <!-- ================= Fim da parte a alterar quando copiado equipa website  ========================= -->
 </script>
 <!-- ================= fim da zona a editar ========================= -->
+
+ 
 <style>
  
 :root{
@@ -533,6 +535,11 @@ select:focus{outline:none;border-color:var(--yellow)}
   // acima deste número os rostos ficam ilegíveis numa partilha de ecrã
   var AVATAR_LIMIT = 15;
  
+  // tamanho do avatar: sobe estes dois valores para os aumentar outra vez
+  var AVATAR_SCALE = 0.32;   // fração da largura disponível na fatia
+  var AVATAR_MAX = 42;       // raio máximo, num círculo de raio 190
+  var AVATAR_DIST = 126;     // distância ao centro da roda
+ 
   function drawAvatar(NS, name, cx, cy, r, ringColor){
     var g = document.createElementNS(NS,"g");
     // compensa a rotação acumulada da roda para os rostos ficarem direitos em repouso
@@ -600,9 +607,9 @@ select:focus{outline:none;border-color:var(--yellow)}
     var seg = 360 / n;
  
     // raio do avatar: limitado pela corda entre fatias e pelo espaço radial
-    var Rc = 128;
+    var Rc = AVATAR_DIST;
     var chord = n === 1 ? 999 : 2 * Rc * Math.sin(Math.PI / n);
-    var ar = Math.min(chord * 0.40, 52);
+    var ar = Math.min(chord * AVATAR_SCALE, AVATAR_MAX);
  
     for(var i=0;i<n;i++){
       var c = segColor(i,n);
@@ -1103,4 +1110,3 @@ select:focus{outline:none;border-color:var(--yellow)}
 </script>
 </body>
 </html>
- 
