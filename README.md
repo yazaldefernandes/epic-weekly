@@ -1,1 +1,1 @@
-# epic-weejly
+# epic-weekly
