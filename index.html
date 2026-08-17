@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roleta ETS — Epic Weekly</title>
-
+ 
 <!-- ==================================================================
      EQUIPA
      Esta é a única parte do ficheiro que precisa de ser editada.
@@ -14,25 +14,17 @@
 =================================================================== -->
 <script>
 window.ETS_EQUIPA = [
-  { nome:"Tiago",      img:"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fmarsemfim.com.br%2Fgolfinho-de-irrawaddy-diferente-e-ameacado%2F&ved=0CBYQjRxqFwoTCMDcn6m3qJYDFQAAAAAdAAAAABA3&opi=89978449" },
-  { nome:"André",    img:"" },
-  { nome:"Diana", img:"" },
+  { nome:"André",      img:"" },
   { nome:"Beatriz",    img:"" },
-  { nome:"Sara",     img:"" },
+  { nome:"Diana", img:"" },
+  { nome:"Sara",    img:"" },
+  { nome:"Tiago",     img:"" },
   { nome:"Yazalde",     img:"" }
 ];
 </script>
 <!-- ================= fim da zona a editar ========================= -->
 <style>
-/* ------------------------------------------------------------------
-   FONTES
-   As fontes da marca não existem por defeito no browser. Se as tiveres
-   alojadas no WordPress, descomenta e aponta para os ficheiros:
-
-   @font-face { font-family:"Plantin MT Pro"; src:url("/wp-content/uploads/fonts/PlantinMTPro.woff2") format("woff2"); font-weight:400; font-display:swap; }
-   @font-face { font-family:"Avenir Next"; src:url("/wp-content/uploads/fonts/AvenirNext.woff2") format("woff2"); font-weight:400 700; font-display:swap; }
-------------------------------------------------------------------- */
-
+ 
 :root{
   --ink:#0A0A0A;
   --panel:#121212;
@@ -40,11 +32,11 @@ window.ETS_EQUIPA = [
   --yellow:#FCCE00;
   --bone:#F4F2EC;
   --ash:#7C776C;
-
+ 
   --display:"Plantin MT Pro", Plantin, "Palatino Linotype", Palatino, Georgia, serif;
   --body:"Avenir Next", Avenir, "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
-
+ 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -63,7 +55,7 @@ body::before{
   pointer-events:none;
   z-index:0;
 }
-
+ 
 .eyebrow{
   font-size:10px;
   letter-spacing:.22em;
@@ -72,10 +64,10 @@ body::before{
   margin:0;
 }
 .eyebrow.on{color:var(--yellow)}
-
+ 
 /* ---------------- layout ---------------- */
 .shell{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:22px 26px 60px}
-
+ 
 .top{
   display:flex;align-items:baseline;justify-content:space-between;
   gap:18px;padding-bottom:14px;border-bottom:1px solid var(--line);
@@ -87,7 +79,7 @@ body::before{
 }
 .brand span{color:var(--ash);font-size:13px;letter-spacing:.02em}
 .top .eyebrow{text-align:right}
-
+ 
 .grid{
   display:grid;
   grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
@@ -95,7 +87,7 @@ body::before{
   margin-top:34px;
   align-items:start;
 }
-
+ 
 /* ---------------- roda ---------------- */
 .stage{display:flex;flex-direction:column;align-items:center}
 .wheel-wrap{position:relative;width:100%;max-width:470px;aspect-ratio:1}
@@ -111,10 +103,10 @@ body::before{
 svg#wheel{width:100%;height:100%;display:block;overflow:visible}
 #rotor{transform-origin:200px 200px;transition:transform 4.4s cubic-bezier(.14,.72,.06,1)}
 .seg-label{font-family:var(--body);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-
+ 
 .hub-count{font-family:var(--display);font-size:26px;fill:var(--bone)}
 .hub-label{font-family:var(--body);font-size:8px;letter-spacing:.2em;fill:var(--ash);text-transform:uppercase}
-
+ 
 /* ---------------- resultado ---------------- */
 .now{margin-top:26px;text-align:center;min-height:104px}
 .now .name{
@@ -125,7 +117,7 @@ svg#wheel{width:100%;height:100%;display:block;overflow:visible}
 .now .name.idle{color:var(--bone);opacity:.32;font-style:normal;font-size:clamp(22px,3vw,28px)}
 @keyframes land{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
 .now .name.pop{animation:land .5s ease-out both}
-
+ 
 .controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
 button{font-family:var(--body);cursor:pointer;border-radius:0}
 button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
@@ -143,7 +135,7 @@ button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
   transition:border-color .15s ease,color .15s ease;
 }
 .ghost:hover{border-color:var(--yellow);color:var(--yellow)}
-
+ 
 /* ---------------- painel da ordem ---------------- */
 .sheet{border-top:1px solid var(--yellow);padding-top:14px}
 .sheet-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
@@ -155,9 +147,9 @@ ol.order li{
 ol.order .num{font-family:var(--display);font-size:19px;color:var(--yellow);min-width:26px}
 ol.order .who{font-size:16px;letter-spacing:.01em;color:var(--bone)}
 .empty{color:var(--ash);font-size:14px;line-height:1.65;margin:18px 0 0;max-width:34ch}
-
+ 
 .sheet-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-
+ 
 /* ---------------- painel equipa ---------------- */
 .drawer{
   position:fixed;inset:0;z-index:20;display:none;
@@ -171,12 +163,32 @@ ol.order .who{font-size:16px;letter-spacing:.01em;color:var(--bone)}
 }
 .drawer h2{font-family:var(--display);font-weight:400;font-size:26px;margin:10px 0 6px}
 .drawer p.help{color:var(--ash);font-size:13px;line-height:1.6;margin:0 0 18px}
-textarea{
-  width:100%;min-height:230px;background:var(--ink);color:var(--bone);
-  border:1px solid var(--line);padding:14px;font-family:var(--body);
-  font-size:15px;line-height:1.9;resize:vertical;
+.editor{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.editor li{
+  display:flex;align-items:center;gap:11px;
+  padding:9px 0;border-bottom:1px solid var(--line);
 }
-textarea:focus{outline:none;border-color:var(--yellow)}
+.editor .ph{
+  width:40px;height:40px;flex:0 0 40px;border-radius:50%;overflow:hidden;
+  border:1px solid var(--line);background:var(--ink);color:var(--yellow);
+  font-family:var(--display);font-size:15px;padding:0;
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.editor .ph:hover{border-color:var(--yellow)}
+.editor .ph img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.editor input[type=text]{
+  flex:1;min-width:0;background:transparent;color:var(--bone);
+  border:none;border-bottom:1px solid transparent;
+  padding:8px 0;font-family:var(--body);font-size:15px;
+}
+.editor input[type=text]:focus{outline:none;border-bottom-color:var(--yellow)}
+.editor .rm{
+  background:none;border:none;color:var(--ash);font-size:19px;line-height:1;
+  padding:2px 4px;cursor:pointer;
+}
+.editor .rm:hover{color:var(--yellow)}
+.export{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+.export .help{margin:8px 0 14px}
 .field{margin-top:20px}
 .roster{
   list-style:none;margin:0;padding:0;
@@ -192,22 +204,10 @@ textarea:focus{outline:none;border-color:var(--yellow)}
 }
 .roster li label{display:flex;align-items:center;gap:13px;flex:1;cursor:pointer;min-width:0}
 .roster li .who-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.roster li .guest-tag{
-  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);
+.roster li .tag-note{
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);
   border:1px solid var(--line);padding:3px 7px;white-space:nowrap;
 }
-.roster li .rm{
-  background:none;border:none;color:var(--ash);font-size:18px;line-height:1;
-  padding:2px 4px;cursor:pointer;
-}
-.roster li .rm:hover{color:var(--yellow)}
-.guest-add{display:flex;gap:8px;margin-top:14px}
-.guest-add input{
-  flex:1;min-width:0;background:var(--ink);color:var(--bone);border:1px solid var(--line);
-  padding:11px 12px;font-family:var(--body);font-size:14px;
-}
-.guest-add input:focus{outline:none;border-color:var(--yellow)}
-.guest-add button{padding:11px 16px;font-size:10px}
 .roster li .idx{font-family:var(--display);font-size:15px;color:var(--yellow);min-width:22px}
 .roster li .token{
   width:30px;height:30px;border-radius:50%;flex:0 0 30px;
@@ -219,6 +219,10 @@ textarea:focus{outline:none;border-color:var(--yellow)}
   font-family:var(--display);font-size:12px;color:var(--yellow);letter-spacing:.02em;
 }
 .drawer p.help b{color:var(--bone);font-weight:600}
+.drawer p.help.imgwarn{
+  color:var(--yellow);border-left:2px solid var(--yellow);
+  padding:10px 0 10px 12px;margin:16px 0 0;
+}
 .roster-count{margin:0 0 12px;font-size:12px;color:var(--ash);letter-spacing:.04em}
 .field label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin-bottom:8px}
 input[type=number]{
@@ -233,7 +237,7 @@ select:focus{outline:none;border-color:var(--yellow)}
 .history{margin-top:22px;border-top:1px solid var(--line);padding-top:16px;color:var(--ash);font-size:13px;line-height:1.7}
 .history b{color:var(--bone);font-weight:600}
 .drawer-foot{display:flex;gap:10px;margin-top:28px}
-
+ 
 .toast{
   position:fixed;bottom:26px;left:50%;transform:translate(-50%,20px);
   background:var(--yellow);color:var(--ink);padding:13px 22px;
@@ -241,7 +245,7 @@ select:focus{outline:none;border-color:var(--yellow)}
   opacity:0;transition:opacity .2s ease,transform .2s ease;z-index:40;pointer-events:none;
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
-
+ 
 @media (max-width:880px){
   .shell{padding:18px 18px 48px}
   .grid{grid-template-columns:1fr;gap:36px;margin-top:26px}
@@ -257,7 +261,7 @@ select:focus{outline:none;border-color:var(--yellow)}
 </style>
 </head>
 <body>
-
+ 
 <div class="shell">
   <header class="top">
     <div class="brand">
@@ -266,7 +270,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     </div>
     <p class="eyebrow" id="weekStamp"></p>
   </header>
-
+ 
   <main class="grid">
     <section class="stage">
       <div class="wheel-wrap">
@@ -279,86 +283,92 @@ select:focus{outline:none;border-color:var(--yellow)}
           <text class="hub-label" x="200" y="214" text-anchor="middle">por partilhar</text>
         </svg>
       </div>
-
+ 
       <div class="now">
         <p class="eyebrow on" id="nowLabel">A partilhar agora</p>
         <p class="name idle" id="nowName" aria-live="polite">Gira para definir a ordem</p>
       </div>
-
+ 
       <div class="controls">
         <button class="spin" id="spinBtn">Girar</button>
         <button class="ghost" id="teamBtn">Equipa</button>
-        <button class="ghost" id="resetBtn">Presenças</button>
+        <button class="ghost" id="resetBtn">Começar Weekly</button>
       </div>
     </section>
-
+ 
     <aside class="sheet">
       <div class="sheet-head">
         <p class="eyebrow on">Ordem desta semana</p>
         <p class="eyebrow" id="progress"></p>
       </div>
-
+ 
       <ol class="order" id="orderList"></ol>
       <p class="empty" id="emptyNote">Ainda ninguém foi sorteado. Cada nome sai uma vez e sai da roleta, por isso a roleta define a ordem completa da reunião. A última pessoa entra em fila automaticamente, sem girar.</p>
-
+ 
       <div class="sheet-foot">
         <button class="ghost" id="copyBtn">Copiar ordem</button>
       </div>
     </aside>
   </main>
 </div>
-
+ 
 <!-- painel equipa -->
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-card" role="dialog" aria-modal="true" aria-label="Equipa">
     <p class="eyebrow on">Configuração</p>
     <h2>Equipa</h2>
-    <p class="help">Um nome por linha. Para usar a fotografia, escreve <b>Nome | link da imagem</b>. Sem link, a fatia mostra as iniciais.</p>
-    <textarea id="namesInput" spellcheck="false" aria-label="Nomes da equipa"></textarea>
-
+    <p class="help">Clica no círculo para carregar a fotografia a partir do computador. Fica guardada dentro da roleta, sem depender de links.</p>
+ 
+    <ul class="editor" id="editorList"></ul>
+    <input type="file" id="photoInput" accept="image/*" hidden>
+    <button class="ghost" id="addPersonBtn" style="margin-top:14px">Adicionar pessoa</button>
+ 
+    <p class="help imgwarn" id="imgWarn" hidden></p>
+ 
+    <div class="export">
+      <p class="eyebrow">Fixar no ficheiro</p>
+      <p class="help">As fotografias carregadas ficam neste browser. Para toda a equipa as ver, copia o bloco e cola no topo do <b>index.html</b>, substituindo o que lá está.</p>
+      <button class="ghost" id="exportBtn">Copiar bloco da equipa</button>
+    </div>
+ 
     <div class="drawer-foot">
       <button class="spin" id="saveBtn" style="padding:15px 30px">Guardar</button>
       <button class="ghost" id="closeBtn">Fechar</button>
     </div>
   </div>
 </div>
-
+ 
 <!-- painel nova semana -->
 <div class="drawer" id="weekDrawer" aria-hidden="true">
   <div class="drawer-card" role="dialog" aria-modal="true" aria-label="Nova semana">
     <p class="eyebrow on" id="weekEyebrow">Recomeçar</p>
     <h2 id="weekTitle">Nova semana</h2>
     <p class="help" id="weekHelp">Quem está presente no Epic Weekly desta semana? Desmarca quem falta.</p>
-
+ 
     <ul class="roster" id="roster"></ul>
-
-    <div class="guest-add">
-      <input type="text" id="guestName" placeholder="Quem se junta só esta semana" aria-label="Nome de convidado">
-      <button class="ghost" id="addGuestBtn">Juntar</button>
-    </div>
-
+ 
     <button class="ghost" id="editTeamBtn" style="margin-top:16px">Editar equipa</button>
-
+ 
     <div class="field" id="starterField">
       <label for="lastStarter">Quem começou na semana passada</label>
       <select id="lastStarter"></select>
     </div>
-
+ 
     <div class="history" id="historyBox">Esta pessoa fica de fora do primeiro sorteio. Se não souberes, procura a ordem da semana anterior no chat da equipa, onde foi colada.</div>
-
+ 
     <div class="drawer-foot">
       <button class="spin" id="startWeekBtn" style="padding:15px 30px">Começar Weekly</button>
       <button class="ghost" id="closeWeekBtn">Fechar</button>
     </div>
   </div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 (function(){
   "use strict";
-
+ 
   /* ---------- armazenamento tolerante a falhas ---------- */
   var mem = {};
   var store = {
@@ -372,7 +382,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
   };
   var KEY = "ets.roleta.v4";
-
+ 
   var state = {
     people: [
       {name:"Ana", img:""}, {name:"Bruno", img:""}, {name:"Catarina", img:""}, {name:"Diogo", img:""},
@@ -385,7 +395,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     lastStarter: "",     // fica de fora do primeiro sorteio
     configSig: ""        // assinatura da equipa definida no topo do ficheiro
   };
-
+ 
   function configPeople(){
     var raw = (typeof window !== "undefined" && window.ETS_EQUIPA) || [];
     var out = [];
@@ -398,7 +408,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
     return out;
   }
-
+ 
   function normalizePeople(arr){
     var out = [];
     arr.forEach(function(p){
@@ -416,13 +426,13 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
     return "";
   }
-
+ 
   function load(){
     var cfg = configPeople();
     if(cfg.length) state.people = cfg;
     var sig = JSON.stringify(state.people);
     state.configSig = sig;
-
+ 
     var raw = store.get(KEY);
     if(!raw) return;
     try {
@@ -442,24 +452,26 @@ select:focus{outline:none;border-color:var(--yellow)}
     } catch(e){}
   }
   function save(){ store.set(KEY, JSON.stringify(state)); }
-
+ 
   /* ---------- elementos ---------- */
   var $ = function(id){ return document.getElementById(id); };
   var rotor = $("rotor"), hubCount = $("hubCount"), nowName = $("nowName"), nowLabel = $("nowLabel");
   var spinBtn = $("spinBtn"), orderList = $("orderList"), emptyNote = $("emptyNote"), progress = $("progress");
-  var drawer = $("drawer"), namesInput = $("namesInput"), lastStarterSel = $("lastStarter");
+  var drawer = $("drawer"), lastStarterSel = $("lastStarter");
+  var editorList = $("editorList"), photoInput = $("photoInput");
+  var imgWarn = $("imgWarn");
   var weekDrawer = $("weekDrawer"), roster = $("roster");
-  var guestName = $("guestName"), starterField = $("starterField");
+  var starterField = $("starterField");
   var weekTitle = $("weekTitle"), weekHelp = $("weekHelp"), weekEyebrow = $("weekEyebrow");
   var historyBox = $("historyBox"), toast = $("toast");
-
+ 
   var PALETTE = [
     {fill:"#FCCE00", text:"#0A0A0A"},
     {fill:"#101010", text:"#F4F2EC"},
     {fill:"#F4F2EC", text:"#0A0A0A"}
   ];
   var rotation = 0, spinning = false;
-
+ 
   /* ---------- desenho da roda ---------- */
   function polar(cx,cy,r,deg){
     var a = (deg - 90) * Math.PI / 180;
@@ -488,7 +500,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     var b = parts.length > 1 ? parts[parts.length-1].charAt(0) : "";
     return (a + b).toUpperCase();
   }
-
+ 
   /* pré-carregamento: só desenhamos a fotografia depois de sabermos que carrega */
   var imgStatus = {};
   function preload(){
@@ -497,34 +509,43 @@ select:focus{outline:none;border-color:var(--yellow)}
       if(!url || imgStatus[url]) return;
       imgStatus[url] = "loading";
       var im = new Image();
-      im.onload = function(){ imgStatus[url] = "ok"; drawWheel(); renderRoster(); };
-      im.onerror = function(){ imgStatus[url] = "fail"; drawWheel(); renderRoster(); };
+      im.onload = function(){ imgStatus[url] = "ok"; drawWheel(); renderRoster(); renderImgWarn(); };
+      im.onerror = function(){ imgStatus[url] = "fail"; drawWheel(); renderRoster(); renderImgWarn(); };
       im.src = url;
     });
+  }
+  function renderImgWarn(){
+    if(!imgWarn) return;
+    var bad = state.people.filter(function(p){ return p.img && imgStatus[p.img] === "fail"; });
+    if(!bad.length){ imgWarn.hidden = true; return; }
+    imgWarn.hidden = false;
+    imgWarn.textContent = "Não foi possível carregar a imagem de " +
+      bad.map(function(p){ return p.name; }).join(", ") +
+      ". Carrega o ficheiro a partir do computador, que evita o problema.";
   }
   function hasPhoto(name){
     var url = imgFor(name);
     return !!url && imgStatus[url] === "ok";
   }
-
+ 
   // acima deste número os rostos ficam ilegíveis numa partilha de ecrã
   var AVATAR_LIMIT = 15;
-
+ 
   function drawAvatar(NS, name, cx, cy, r, ringColor){
     var g = document.createElementNS(NS,"g");
     // compensa a rotação acumulada da roda para os rostos ficarem direitos em repouso
     g.setAttribute("transform","rotate(" + (-rotation).toFixed(2) + " " + cx.toFixed(2) + " " + cy.toFixed(2) + ")");
-
+ 
     var url = imgFor(name);
     var photo = hasPhoto(name);
-
+ 
     var base = document.createElementNS(NS,"circle");
     base.setAttribute("cx",cx.toFixed(2)); base.setAttribute("cy",cy.toFixed(2)); base.setAttribute("r",r.toFixed(2));
     base.setAttribute("fill", photo ? "#F4F2EC" : "#0A0A0A");
     base.setAttribute("stroke", ringColor);
     base.setAttribute("stroke-width","1.5");
     g.appendChild(base);
-
+ 
     if(photo){
       var id = "clip-" + Math.random().toString(36).slice(2,9);
       var cp = document.createElementNS(NS,"clipPath");
@@ -533,7 +554,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       cc.setAttribute("cx",cx.toFixed(2)); cc.setAttribute("cy",cy.toFixed(2)); cc.setAttribute("r",r.toFixed(2));
       cp.appendChild(cc);
       g.appendChild(cp);
-
+ 
       var im = document.createElementNS(NS,"image");
       im.setAttribute("x",(cx-r).toFixed(2)); im.setAttribute("y",(cy-r).toFixed(2));
       im.setAttribute("width",(r*2).toFixed(2)); im.setAttribute("height",(r*2).toFixed(2));
@@ -556,7 +577,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
     return g;
   }
-
+ 
   function drawWheel(){
     var list = state.pool || [];
     var n = list.length;
@@ -564,7 +585,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     var NS = "http://www.w3.org/2000/svg";
     var R = 190, C = 200, fs = labelSize(Math.max(n,1));
     var useAvatars = n <= AVATAR_LIMIT;
-
+ 
     if(n === 0){
       var ring = document.createElementNS(NS,"circle");
       ring.setAttribute("cx",C); ring.setAttribute("cy",C); ring.setAttribute("r",R);
@@ -573,14 +594,14 @@ select:focus{outline:none;border-color:var(--yellow)}
       rotor.appendChild(ring);
       return;
     }
-
+ 
     var seg = 360 / n;
-
+ 
     // raio do avatar: limitado pela corda entre fatias e pelo espaço radial
     var Rc = 128;
     var chord = n === 1 ? 999 : 2 * Rc * Math.sin(Math.PI / n);
     var ar = Math.min(chord * 0.40, 52);
-
+ 
     for(var i=0;i<n;i++){
       var c = segColor(i,n);
       var shape;
@@ -600,17 +621,17 @@ select:focus{outline:none;border-color:var(--yellow)}
       shape.setAttribute("stroke","#0A0A0A");
       shape.setAttribute("stroke-width","1.5");
       rotor.appendChild(shape);
-
+ 
       // dir 0 = topo, cresce no sentido dos ponteiros
       var dir = seg*(i+0.5);
       var svgAngle = dir - 90;                       // rotate() do SVG: 0 = direita
-
+ 
       if(useAvatars){
         var pos = polar(C,C,Rc,dir);
         rotor.appendChild(drawAvatar(NS, list[i], pos[0], pos[1], ar, c.text));
         continue;
       }
-
+ 
       // muita gente: volta aos nomes escritos
       var norm = ((svgAngle % 360) + 360) % 360;
       var flip = norm > 90 && norm < 270;
@@ -633,7 +654,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       rotor.appendChild(t);
     }
   }
-
+ 
   /* ---------- render ---------- */
   // quando sobra uma pessoa, não vale a pena girar: entra logo em último
   function placeLast(){
@@ -644,15 +665,15 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
     return false;
   }
-
+ 
   function render(){
     if(state.pool === null) state.pool = nameList();
     drawWheel();
-
+ 
     hubCount.textContent = state.pool.length;
     var total = state.pool.length + state.order.length;
     progress.textContent = total ? (state.order.length + " de " + total) : "";
-
+ 
     orderList.innerHTML = "";
     state.order.forEach(function(name,idx){
       var li = document.createElement("li");
@@ -666,7 +687,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       orderList.appendChild(li);
     });
     emptyNote.hidden = state.order.length > 0;
-
+ 
     var current = state.order[state.currentIdx];
     if(current){
       nowName.textContent = current;
@@ -678,32 +699,32 @@ select:focus{outline:none;border-color:var(--yellow)}
       nowName.classList.add("idle");
       nowLabel.textContent = "A partilhar agora";
     }
-
+ 
     spinBtn.disabled = spinning || state.pool.length === 0;
     spinBtn.textContent = state.pool.length === 0 ? "Ordem completa" : "Girar";
   }
-
+ 
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g, function(m){
       return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[m];
     });
   }
-
+ 
   /* ---------- girar ---------- */
   function spin(){
     if(spinning || !state.pool.length) return;
     spinning = true;
     spinBtn.disabled = true;
-
+ 
     var n = state.pool.length;
     var candidates = state.pool.map(function(_,i){ return i; });
-
+ 
     // primeira pessoa da semana: exclui quem começou na semana passada
     if(state.order.length === 0 && state.lastStarter && n > 1){
       var filtered = candidates.filter(function(i){ return state.pool[i] !== state.lastStarter; });
       if(filtered.length) candidates = filtered;
     }
-
+ 
     var pick = candidates[Math.floor(Math.random() * candidates.length)];
     var seg = 360 / n;
     var targetMod = (360 - seg*(pick+0.5)) % 360;
@@ -711,10 +732,10 @@ select:focus{outline:none;border-color:var(--yellow)}
     var delta = ((targetMod - currentMod) % 360 + 360) % 360;
     rotation += 360 * (5 + Math.floor(Math.random()*2)) + delta;
     rotor.style.transform = "rotate(" + rotation + "deg)";
-
+ 
     var name = state.pool[pick];
     var wait = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 120 : 4500;
-
+ 
     window.setTimeout(function(){
       state.pool.splice(pick,1);
       state.order.push(name);
@@ -735,12 +756,12 @@ select:focus{outline:none;border-color:var(--yellow)}
       if(auto) showToast(state.order[state.autoIdx] + " fecha a ronda");
     }, wait);
   }
-
+ 
   /* ---------- ações ---------- */
   spinBtn.addEventListener("click", spin);
-
+ 
   $("resetBtn").addEventListener("click", function(){ openWeek(); });
-
+ 
   $("copyBtn").addEventListener("click", function(){
     if(!state.order.length){ showToast("Ainda não há ordem"); return; }
     var txt = "Epic Weekly — ordem de partilha\n" +
@@ -748,9 +769,9 @@ select:focus{outline:none;border-color:var(--yellow)}
       (state.pool.length ? "\n(a sortear: " + state.pool.length + ")" : "");
     copy(txt);
   });
-
-  function copy(txt){
-    var done = function(){ showToast("Ordem copiada"); };
+ 
+  function copy(txt, msg){
+    var done = function(){ showToast(msg || "Ordem copiada"); };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(txt).then(done, function(){ fallbackCopy(txt, done); });
     } else { fallbackCopy(txt, done); }
@@ -762,7 +783,7 @@ select:focus{outline:none;border-color:var(--yellow)}
     try { document.execCommand("copy"); done(); } catch(e){ showToast("Não deu para copiar"); }
     document.body.removeChild(ta);
   }
-
+ 
   var toastTimer = null;
   function showToast(msg){
     toast.textContent = msg;
@@ -770,26 +791,125 @@ select:focus{outline:none;border-color:var(--yellow)}
     if(toastTimer) window.clearTimeout(toastTimer);
     toastTimer = window.setTimeout(function(){ toast.classList.remove("show"); }, 1900);
   }
-
+ 
   /* ---------- painéis ---------- */
   var backToWeek = false;
-
+ 
   function show(el, focusEl){
     el.classList.add("open");
     el.setAttribute("aria-hidden","false");
-    if(focusEl) focusEl.focus();
+    if(focusEl && focusEl.focus) focusEl.focus();
   }
   function hide(el){
     el.classList.remove("open");
     el.setAttribute("aria-hidden","true");
   }
-
-  // painel equipa: só a lista de nomes
+ 
+  // painel equipa: uma linha por pessoa, com fotografia carregada do computador
+  var draft = [];
+  var pendingRow = -1;
+ 
+  // reduz a fotografia a um quadrado pequeno para caber dentro do ficheiro
+  function shrink(file, done){
+    var reader = new FileReader();
+    reader.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        var S = 240;
+        var cv = document.createElement("canvas");
+        cv.width = S; cv.height = S;
+        var ctx = cv.getContext("2d");
+        // base clara: recortes PNG transparentes assentam como na roleta
+        ctx.fillStyle = "#F4F2EC";
+        ctx.fillRect(0,0,S,S);
+        var scale = Math.max(S/im.width, S/im.height);
+        var w = im.width*scale, h = im.height*scale;
+        // centrado na horizontal, alinhado ao topo: é onde está a cara
+        ctx.drawImage(im, (S-w)/2, 0, w, h);
+        try { done(cv.toDataURL("image/jpeg", 0.82)); }
+        catch(e){ showToast("Não deu para preparar a imagem"); }
+      };
+      im.onerror = function(){ showToast("Ficheiro de imagem inválido"); };
+      im.src = reader.result;
+    };
+    reader.onerror = function(){ showToast("Não deu para ler o ficheiro"); };
+    reader.readAsDataURL(file);
+  }
+ 
+  function renderEditor(){
+    editorList.innerHTML = "";
+    draft.forEach(function(p,i){
+      var li = document.createElement("li");
+ 
+      var ph = document.createElement("button");
+      ph.className = "ph";
+      ph.type = "button";
+      ph.setAttribute("aria-label", "Fotografia de " + (p.name || "pessoa sem nome"));
+      if(p.img){
+        var im = document.createElement("img");
+        im.src = p.img; im.alt = "";
+        ph.appendChild(im);
+      } else {
+        ph.textContent = p.name ? initials(p.name) : "+";
+      }
+      ph.addEventListener("click", function(){
+        pendingRow = i;
+        photoInput.value = "";
+        photoInput.click();
+      });
+ 
+      var input = document.createElement("input");
+      input.type = "text";
+      input.value = p.name;
+      input.placeholder = "Nome";
+      input.addEventListener("input", function(){ draft[i].name = input.value; });
+      input.addEventListener("blur", function(){ if(!p.img) renderEditor(); });
+ 
+      var rm = document.createElement("button");
+      rm.className = "rm";
+      rm.type = "button";
+      rm.setAttribute("aria-label", "Remover " + (p.name || "linha"));
+      rm.textContent = "×";
+      rm.addEventListener("click", function(){
+        draft.splice(i,1);
+        renderEditor();
+      });
+ 
+      li.appendChild(ph); li.appendChild(input); li.appendChild(rm);
+      editorList.appendChild(li);
+    });
+  }
+ 
+  photoInput.addEventListener("change", function(){
+    var file = photoInput.files && photoInput.files[0];
+    if(!file || pendingRow < 0) return;
+    var i = pendingRow;
+    shrink(file, function(dataUrl){
+      draft[i].img = dataUrl;
+      imgStatus[dataUrl] = "ok";
+      renderEditor();
+    });
+  });
+ 
+  $("addPersonBtn").addEventListener("click", function(){
+    draft.push({name:"", img:""});
+    renderEditor();
+    var inputs = editorList.querySelectorAll ? editorList.querySelectorAll("input[type=text]") : null;
+    if(inputs && inputs.length) inputs[inputs.length-1].focus();
+  });
+ 
+  $("exportBtn").addEventListener("click", function(){
+    var lines = draft.filter(function(p){ return (p.name||"").trim(); }).map(function(p){
+      return '  { nome:"' + p.name.trim().replace(/"/g,"") + '", img:"' + (p.img||"") + '" }';
+    });
+    copy("window.ETS_EQUIPA = [\n" + lines.join(",\n") + "\n];", "Bloco copiado");
+  });
+ 
   function openTeam(){
-    namesInput.value = state.people.map(function(p){
-      return p.img ? (p.name + " | " + p.img) : p.name;
-    }).join("\n");
-    show(drawer, namesInput);
+    draft = state.people.map(function(p){ return {name:p.name, img:p.img}; });
+    renderEditor();
+    renderImgWarn();
+    show(drawer);
   }
   function closeTeam(){
     hide(drawer);
@@ -798,16 +918,12 @@ select:focus{outline:none;border-color:var(--yellow)}
   $("teamBtn").addEventListener("click", function(){ backToWeek = false; openTeam(); });
   $("closeBtn").addEventListener("click", closeTeam);
   drawer.addEventListener("click", function(e){ if(e.target === drawer) closeTeam(); });
-
+ 
   $("saveBtn").addEventListener("click", function(){
     var people = [];
-    namesInput.value.split("\n").forEach(function(line){
-      line = line.trim();
-      if(!line) return;
-      var cut = line.indexOf("|");
-      var name = (cut === -1 ? line : line.slice(0,cut)).trim();
-      var img = cut === -1 ? "" : line.slice(cut+1).trim();
-      if(name) people.push({name:name, img:img});
+    draft.forEach(function(p){
+      var name = (p.name||"").trim();
+      if(name) people.push({name:name, img:(p.img||"").trim()});
     });
     if(!people.length){ showToast("Escreve pelo menos um nome"); return; }
     var rosterChanged = people.map(function(p){return p.name;}).join("|") !== nameList().join("|");
@@ -823,13 +939,12 @@ select:focus{outline:none;border-color:var(--yellow)}
     save(); render(); closeTeam();
     showToast("Equipa guardada");
   });
-
+ 
   // painel nova semana: presenças desta semana, sem tocar na equipa permanente
   var present = {};      // nome -> true/false, só para esta semana
-  var guests = [];       // quem se junta apenas esta semana
-
+ 
   function inProgress(){ return state.order.length > 0 && state.pool.length > 0; }
-
+ 
   function makeToken(name){
     var token = document.createElement("span");
     token.className = "token";
@@ -843,11 +958,11 @@ select:focus{outline:none;border-color:var(--yellow)}
     }
     return token;
   }
-
-  function rosterRow(name, isGuest, locked){
+ 
+  function rosterRow(name, locked){
     var li = document.createElement("li");
-    var id = "pres-" + name.replace(/[^a-zA-Z0-9]/g,"") + (isGuest ? "-g" : "");
-
+    var id = "pres-" + name.replace(/[^a-zA-Z0-9]/g,"");
+ 
     var box = document.createElement("input");
     box.type = "checkbox";
     box.id = id;
@@ -857,7 +972,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       present[name] = box.checked;
       li.classList.toggle("off", !box.checked);
     });
-
+ 
     var label = document.createElement("label");
     label.setAttribute("for", id);
     label.appendChild(makeToken(name));
@@ -865,37 +980,20 @@ select:focus{outline:none;border-color:var(--yellow)}
     who.className = "who-name";
     who.textContent = name;
     label.appendChild(who);
-
+ 
     li.appendChild(box);
     li.appendChild(label);
-
-    if(isGuest){
-      var tag = document.createElement("span");
-      tag.className = "guest-tag";
-      tag.textContent = "só hoje";
-      li.appendChild(tag);
-      var rm = document.createElement("button");
-      rm.className = "rm";
-      rm.type = "button";
-      rm.setAttribute("aria-label","Retirar " + name);
-      rm.textContent = "×";
-      rm.addEventListener("click", function(){
-        guests = guests.filter(function(g){ return g !== name; });
-        delete present[name];
-        renderRoster();
-      });
-      li.appendChild(rm);
-    }
+ 
     if(locked){
       var done = document.createElement("span");
-      done.className = "guest-tag";
+      done.className = "tag-note";
       done.textContent = "já partilhou";
       li.appendChild(done);
     }
     if(!box.checked) li.classList.add("off");
     return li;
   }
-
+ 
   function renderRoster(){
     if(!roster) return;
     roster.innerHTML = "";
@@ -903,46 +1001,23 @@ select:focus{outline:none;border-color:var(--yellow)}
     state.people.forEach(function(p){
       // quem já partilhou nesta ronda não pode ser retirado sem apagar a ordem
       var locked = inProgress() && drawn.indexOf(p.name) !== -1;
-      roster.appendChild(rosterRow(p.name, false, locked));
-    });
-    guests.forEach(function(g){
-      var locked = inProgress() && drawn.indexOf(g) !== -1;
-      roster.appendChild(rosterRow(g, true, locked));
+      roster.appendChild(rosterRow(p.name, locked));
     });
   }
-
-  function addGuest(){
-    var name = (guestName.value || "").trim();
-    if(!name){ guestName.focus(); return; }
-    var taken = nameList().concat(guests).some(function(n){ return n.toLowerCase() === name.toLowerCase(); });
-    if(taken){ showToast("Esse nome já está na lista"); return; }
-    guests.push(name);
-    present[name] = true;
-    guestName.value = "";
-    renderRoster();
-    guestName.focus();
-  }
-  $("addGuestBtn").addEventListener("click", addGuest);
-  guestName.addEventListener("keydown", function(e){
-    if(e.key === "Enter"){ e.preventDefault(); addGuest(); }
-  });
-
+ 
   function openWeek(){
     var live = inProgress();
-
+ 
     if(live){
       // ronda a meio: parte de quem está nela, não das presenças da semana passada
       var inRound = state.order.concat(state.pool);
       present = {};
       nameList().forEach(function(n){ present[n] = inRound.indexOf(n) !== -1; });
-      guests = inRound.filter(function(n){ return nameList().indexOf(n) === -1; });
-      guests.forEach(function(g){ present[g] = true; });
     } else {
-      // semana nova: todos presentes, sem convidados herdados
+      // semana nova: todos presentes outra vez
       present = {};
-      guests = [];
     }
-
+ 
     weekEyebrow.textContent = live ? "A meio da ronda" : "Recomeçar";
     weekTitle.textContent = live ? "Ajustar presenças" : "Nova semana";
     weekHelp.textContent = live
@@ -951,9 +1026,9 @@ select:focus{outline:none;border-color:var(--yellow)}
     $("startWeekBtn").textContent = live ? "Atualizar roleta" : "Começar Weekly";
     starterField.hidden = live;
     historyBox.hidden = live;
-
+ 
     renderRoster();
-
+ 
     // por defeito, quem começou é quem abriu a ronda que acabou
     var suggested = state.order.length ? state.order[0] : state.lastStarter;
     lastStarterSel.innerHTML = "";
@@ -966,27 +1041,27 @@ select:focus{outline:none;border-color:var(--yellow)}
       if(p.name === suggested) o.selected = true;
       lastStarterSel.appendChild(o);
     });
-
+ 
     show(weekDrawer, $("startWeekBtn"));
   }
-
+ 
   function attendees(){
-    return nameList().concat(guests).filter(function(n){ return present[n] !== false; });
+    return nameList().filter(function(n){ return present[n] !== false; });
   }
   function closeWeek(){ hide(weekDrawer); }
   $("closeWeekBtn").addEventListener("click", closeWeek);
   weekDrawer.addEventListener("click", function(e){ if(e.target === weekDrawer) closeWeek(); });
-
+ 
   $("editTeamBtn").addEventListener("click", function(){
     hide(weekDrawer);
     backToWeek = true;
     openTeam();
   });
-
+ 
   $("startWeekBtn").addEventListener("click", function(){
     var list = attendees();
     if(!list.length){ showToast("Escolhe pelo menos uma pessoa"); return; }
-
+ 
     if(inProgress()){
       // mantém a ordem já sorteada e mexe apenas em quem falta
       state.pool = list.filter(function(n){ return state.order.indexOf(n) === -1; });
@@ -995,7 +1070,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       showToast("Roleta atualizada");
       return;
     }
-
+ 
     state.lastStarter = lastStarterSel.value;
     state.pool = list;
     state.order = [];
@@ -1004,20 +1079,20 @@ select:focus{outline:none;border-color:var(--yellow)}
     save(); render(); closeWeek();
     showToast("Weekly pronto");
   });
-
+ 
   document.addEventListener("keydown", function(e){
     if(e.key !== "Escape") return;
     if(drawer.classList.contains("open")) closeTeam();
     else if(weekDrawer.classList.contains("open")) closeWeek();
   });
-
+ 
   /* ---------- arranque ---------- */
   function stamp(){
     var d = new Date();
     var txt = d.toLocaleDateString("pt-PT",{weekday:"long", day:"numeric", month:"long"});
     $("weekStamp").textContent = txt;
   }
-
+ 
   load(); stamp(); preload();
   if(state.pool === null) state.pool = nameList();
   if(placeLast()) save();
@@ -1026,3 +1101,4 @@ select:focus{outline:none;border-color:var(--yellow)}
 </script>
 </body>
 </html>
+ 
