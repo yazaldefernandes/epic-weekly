@@ -25,9 +25,15 @@ window.ETS_EQUIPA = [
  <!-- ================= Fim da parte a alterar quando copiado equipa website  ========================= -->
 </script>
 <!-- ================= fim da zona a editar ========================= -->
-
- 
 <style>
+/* ------------------------------------------------------------------
+   FONTES
+   As fontes da marca não existem por defeito no browser. Se as tiveres
+   alojadas no WordPress, descomenta e aponta para os ficheiros:
+ 
+   @font-face { font-family:"Plantin MT Pro"; src:url("/wp-content/uploads/fonts/PlantinMTPro.woff2") format("woff2"); font-weight:400; font-display:swap; }
+   @font-face { font-family:"Avenir Next"; src:url("/wp-content/uploads/fonts/AvenirNext.woff2") format("woff2"); font-weight:400 700; font-display:swap; }
+------------------------------------------------------------------- */
  
 :root{
   --ink:#0A0A0A;
@@ -240,7 +246,13 @@ select{
 select:focus{outline:none;border-color:var(--yellow)}
 .history{margin-top:22px;border-top:1px solid var(--line);padding-top:16px;color:var(--ash);font-size:13px;line-height:1.7}
 .history b{color:var(--bone);font-weight:600}
-.drawer-foot{display:flex;gap:10px;margin-top:28px}
+.drawer-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.ghost.block{width:100%;margin-top:10px;text-align:center}
+.ghost.armed{
+  border-color:var(--yellow);color:var(--yellow);
+  background:rgba(252,206,0,.12);font-weight:700;
+}
+.ghost.armed:hover{background:rgba(252,206,0,.2)}
  
 .toast{
   position:fixed;bottom:26px;left:50%;transform:translate(-50%,20px);
@@ -364,6 +376,7 @@ select:focus{outline:none;border-color:var(--yellow)}
       <button class="spin" id="startWeekBtn" style="padding:15px 30px">Começar Weekly</button>
       <button class="ghost" id="closeWeekBtn">Fechar</button>
     </div>
+    <button class="ghost block" id="restartBtn" hidden>Recomeçar Weekly</button>
   </div>
 </div>
  
@@ -461,6 +474,7 @@ select:focus{outline:none;border-color:var(--yellow)}
   var $ = function(id){ return document.getElementById(id); };
   var rotor = $("rotor"), hubCount = $("hubCount"), nowName = $("nowName"), nowLabel = $("nowLabel");
   var spinBtn = $("spinBtn"), orderList = $("orderList"), emptyNote = $("emptyNote"), progress = $("progress");
+  var resetBtn = $("resetBtn"), restartBtn = $("restartBtn");
   var drawer = $("drawer"), lastStarterSel = $("lastStarter");
   var editorList = $("editorList"), photoInput = $("photoInput");
   var imgWarn = $("imgWarn");
@@ -711,6 +725,8 @@ select:focus{outline:none;border-color:var(--yellow)}
  
     spinBtn.disabled = spinning || state.pool.length === 0;
     spinBtn.textContent = state.pool.length === 0 ? "Ordem completa" : "Girar";
+    // o botão diz o que o painel vai mostrar, não uma promessa diferente
+    resetBtn.textContent = inProgress() ? "Ajustar presenças" : "Começar Weekly";
   }
  
   function escapeHtml(s){
@@ -769,7 +785,7 @@ select:focus{outline:none;border-color:var(--yellow)}
   /* ---------- ações ---------- */
   spinBtn.addEventListener("click", spin);
  
-  $("resetBtn").addEventListener("click", function(){ openWeek(); });
+  resetBtn.addEventListener("click", function(){ openWeek(); });
  
   $("copyBtn").addEventListener("click", function(){
     if(!state.order.length){ showToast("Ainda não há ordem"); return; }
@@ -1035,6 +1051,8 @@ select:focus{outline:none;border-color:var(--yellow)}
     $("startWeekBtn").textContent = live ? "Atualizar roleta" : "Começar Weekly";
     starterField.hidden = live;
     historyBox.hidden = live;
+    restartBtn.hidden = !live;
+    armRestart(false);
  
     renderRoster();
  
@@ -1065,6 +1083,27 @@ select:focus{outline:none;border-color:var(--yellow)}
     hide(weekDrawer);
     backToWeek = true;
     openTeam();
+  });
+ 
+  // recomeçar apaga a ordem a meio da reunião, por isso pede confirmação no próprio botão
+  var restartArmed = false, restartTimer = null;
+  function armRestart(on){
+    restartArmed = on;
+    restartBtn.textContent = on ? "Confirmar recomeço" : "Recomeçar Weekly";
+    if(on) restartBtn.classList.add("armed");
+    else restartBtn.classList.remove("armed");
+    if(restartTimer) window.clearTimeout(restartTimer);
+    if(on) restartTimer = window.setTimeout(function(){ armRestart(false); }, 8000);
+  }
+  restartBtn.addEventListener("click", function(){
+    if(!restartArmed){ armRestart(true); return; }
+    armRestart(false);
+    state.pool = nameList();
+    state.order = [];
+    state.currentIdx = -1;
+    state.autoIdx = -1;
+    save(); render(); closeWeek();
+    showToast("Weekly recomeçado");
   });
  
   $("startWeekBtn").addEventListener("click", function(){
